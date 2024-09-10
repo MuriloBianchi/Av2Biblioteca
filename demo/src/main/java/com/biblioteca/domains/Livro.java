@@ -1,5 +1,6 @@
 package com.biblioteca.domains;
 
+import com.biblioteca.domains.enums.CategoriaLivro;
 import com.biblioteca.domains.enums.StatusLivro;
 
 import jakarta.persistence.Column;
@@ -25,8 +26,8 @@ public class Livro {
    private Integer faixaEtaria;
    private Integer numeroPagina;
 
-   private Integer StatusLivro;   
-   private Integer CategoriaLivro; 
+   private StatusLivro StatusLivro;   
+   private CategoriaLivro CategoriaLivro; 
 
     @ManyToOne
     @JoinColumn(name = "idBibliotecario")
@@ -36,15 +37,15 @@ public class Livro {
   }
 
 public Livro(Long id, String isbn, String titulo, String autor, Integer faixaEtaria, Integer numeroPagina,
-        Integer statusLivro, Integer categoriaLivro, Bibliotecario bibliotecario) {
-    Id = id;
+        StatusLivro statusLivro, CategoriaLivro categoriaLivro, Bibliotecario bibliotecario) {
+    this.Id = id;
     this.isbn = isbn;
     this.titulo = titulo;
     this.autor = autor;
     this.faixaEtaria = faixaEtaria;
     this.numeroPagina = numeroPagina;
-    StatusLivro = statusLivro;
-    CategoriaLivro = categoriaLivro;
+    this.StatusLivro = statusLivro;
+    this.CategoriaLivro = categoriaLivro;
     this.bibliotecario = bibliotecario;
 }
 
@@ -53,7 +54,7 @@ public Long getId() {
 }
 
 public void setId(Long id) {
-    Id = id;
+    this.Id = id;
 }
 
 public String getIsbn() {
@@ -96,20 +97,20 @@ public void setNumeroPagina(Integer numeroPagina) {
     this.numeroPagina = numeroPagina;
 }
 
-public Integer getStatusLivro() {
+public StatusLivro getStatusLivro() {
     return StatusLivro;
 }
 
-public void setStatusLivro(Integer statusLivro) {
-    StatusLivro = statusLivro;
+public void setStatusLivro(StatusLivro statusLivro) {
+    this.StatusLivro = statusLivro;
 }
 
-public Integer getCategoriaLivro() {
+public CategoriaLivro getCategoriaLivro() {
     return CategoriaLivro;
 }
 
-public void setCategoriaLivro(Integer categoriaLivro) {
-    CategoriaLivro = categoriaLivro;
+public void setCategoriaLivro(CategoriaLivro categoriaLivro) {
+    this.CategoriaLivro = categoriaLivro;
 }
 
 public Bibliotecario getBibliotecario() {

@@ -23,7 +23,7 @@ public class LivroDTO {
 
     @NotNull(message = "O campo Facha Etário não pode ser nulo!")
     @NotBlank(message = "O campo Facha Etária não pode ser vazio!")
-    protected Integer fachaEtaria;
+    protected Integer faixaEtaria;
 
     @NotNull(message = "O campo Número de Páginas não pode ser nulo!")
     @NotBlank(message = "O campo Número de Páginas não pode ser vazio!")
@@ -33,6 +33,16 @@ public class LivroDTO {
     @NotBlank(message = "O campo Bibliotecario não pode ser vazio!")
     private long bibliotecario;
 
+    private String nomeBibliotecario;
+
+    @NotNull(message = "O campo Status Livro não pode ser nulo!")
+    @NotBlank(message = "O campo Status Livro não pode ser vazio!")
+    private Integer statusLivro;
+
+    @NotNull(message = "O campo Categoria não pode ser nulo!")
+    @NotBlank(message = "O campo Categoria não pode ser vazio!")
+    private Integer categoriaLivro;
+
     public LivroDTO() {};
 
 
@@ -41,8 +51,112 @@ public class LivroDTO {
         this.isbn = livro.getIsbn();
         this.titulo = livro.getTitulo();
         this.autor = livro.getAutor();
-        this.fachaEtaria = livro.getFachaEtaria();
+        this.faixaEtaria = livro.getFaixaEtaria();
         this.numeroPagina = livro.getNumeroPagina();
-        
+        this.statusLivro = livro.getStatusLivro().getId();
+        this.categoriaLivro = livro.getCategoriaLivro().getId();   
+        this.bibliotecario = livro.getBibliotecario().getId();
+        this.nomeBibliotecario = livro.getBibliotecario().getNome();
     }
+
+    public long getId() {
+        return id;
+    }
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+
+    public String getAutor() {
+        return autor;
+    }
+
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+
+    public Integer getFaixaEtaria() {
+        return faixaEtaria;
+    }
+
+
+    public void setFaixaEtaria(Integer faixaEtaria) {
+        this.faixaEtaria = faixaEtaria;
+    }
+
+
+    public Integer getNumeroPagina() {
+        return numeroPagina;
+    }
+
+
+    public void setNumeroPagina(Integer numeroPagina) {
+        this.numeroPagina = numeroPagina;
+    }
+
+
+    public long getBibliotecario() {
+        return bibliotecario;
+    }
+
+
+    public void setBibliotecario(long bibliotecario) {
+        this.bibliotecario = bibliotecario;
+    }
+
+
+    public Integer getStatusLivro() {
+        return statusLivro;
+    }
+
+
+    public void setStatusLivro(Integer statusLivro) {
+        this.statusLivro = statusLivro;
+    }
+
+
+    public Integer getCategoriaLivro() {
+        return categoriaLivro;
+    }
+
+
+    public void setCategoriaLivro(Integer categoriaLivro) {
+        this.categoriaLivro = categoriaLivro;
+    }
+
+
+    public String getNomeBibliotecario() {
+        return nomeBibliotecario;
+    }
+
+
+    public void setNomeBibliotecario(String nomeBibliotecario) {
+        this.nomeBibliotecario = nomeBibliotecario;
+    }
+
+    
 }

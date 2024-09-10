@@ -2,14 +2,17 @@ package com.biblioteca.domains.dtos;
 import java.time.LocalDate;
 
 import com.biblioteca.domains.Reserva;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 public class ReservaDTO {
 
     protected long id;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaReserva;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaDevolucao;
 
     protected String prazo;
@@ -22,6 +25,10 @@ public class ReservaDTO {
 
     protected long livro;
 
+    protected String nomeUsuario;
+
+    protected String tituloLivro;
+
     public ReservaDTO() {};
 
     public ReservaDTO(Reserva reserva){
@@ -33,6 +40,8 @@ public class ReservaDTO {
         this.statusReserva = reserva.getStatusReserva().getId();
         this.usuario = reserva.getUsuario().getId();
         this.livro = reserva.getLivro().getId();
+        this.nomeUsuario = reserva.getUsuario().getNome();
+        this.tituloLivro = reserva.getLivro().getTitulo();
     }
 
     public long getId() {
@@ -99,5 +108,20 @@ public class ReservaDTO {
         this.livro = livro;
     }
 
-    
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getTituloLivro() {
+        return tituloLivro;
+    }
+
+    public void setTituloLivro(String tituloLivro) {
+        this.tituloLivro = tituloLivro;
+    }
+
 }
