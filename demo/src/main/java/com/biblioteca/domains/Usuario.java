@@ -113,11 +113,11 @@ public class Usuario {
         return true;
     }
 
-    /* public void EmprestarLivro(Livro livro){
+     public void EmprestarLivro(Livro livro){
         
     } 
 
     public void DevolverLivro(Livro livro){
 
-    } */
+    } 
 }
