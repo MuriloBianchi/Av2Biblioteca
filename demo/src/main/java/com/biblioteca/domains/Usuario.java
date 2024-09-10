@@ -1,5 +1,7 @@
 package com.biblioteca.domains;
 
+import com.biblioteca.domains.enums.TipoUsuario;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,17 +26,20 @@ public class Usuario {
 
     private String telefone;
 
+    private TipoUsuario tipoUsuario;
+
     public Usuario(){
         
     }
 
-    public Usuario(long id, String nome, String email, String cpf, Integer idade, String telefone) {
+    public Usuario(long id, String nome, String email, String cpf, Integer idade, String telefone, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.idade = idade;
         this.telefone = telefone;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public long getId() {
@@ -85,6 +90,14 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    } 
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -119,5 +132,5 @@ public class Usuario {
 
     public void DevolverLivro(Livro livro){
 
-    } 
+    }
 }

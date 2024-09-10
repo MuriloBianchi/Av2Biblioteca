@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 
+import com.biblioteca.domains.enums.StatusReserva;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -29,6 +30,8 @@ public class Reserva {
 
     private double valor;
 
+    private StatusReserva statusReserva;
+
     @ManyToOne
     @JoinColumn(name = "idusuario")
     private Usuario usuario;
@@ -42,7 +45,7 @@ public class Reserva {
     }
 
     public Reserva(long id, LocalDate dtaReserva, LocalDate dtaDevolucao, String prazo, double valor, Usuario usuario,
-            Livro livro) {
+            Livro livro, StatusReserva statusReserva) {
         this.id = id;
         this.dtaReserva = dtaReserva;
         this.dtaDevolucao = dtaDevolucao;
@@ -50,6 +53,7 @@ public class Reserva {
         this.valor = valor;
         this.usuario = usuario;
         this.livro = livro;
+        this.statusReserva = statusReserva;
     }
 
     public long getId() {
@@ -106,6 +110,14 @@ public class Reserva {
 
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    public StatusReserva getStatusReserva() {
+        return statusReserva;
+    }
+
+    public void setStatusReserva(StatusReserva statusReserva) {
+        this.statusReserva = statusReserva;
     }
 
     @Override
