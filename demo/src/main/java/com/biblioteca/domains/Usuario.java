@@ -2,6 +2,7 @@ package com.biblioteca.domains;
 
 import com.biblioteca.domains.enums.TipoUsuario;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Usuario {
 
     private String email;
 
+    @Column(unique = true)
     private String cpf;
 
     private Integer idade;
