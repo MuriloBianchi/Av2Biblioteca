@@ -1,12 +1,24 @@
 package com.biblioteca.domains;
 
-public class Bibliotecario {
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+public class Bibliotecario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
     private String nome;
+
+    @Column(unique = true)
     private String email;
+    
     private String telefone;
+
+    @Column(unique = true)
     private String cpf;
 
     public Bibliotecario() {

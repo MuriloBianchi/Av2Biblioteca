@@ -2,25 +2,50 @@ package com.biblioteca.domains;
 
 import com.biblioteca.domains.enums.StatusLivro;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 public class Livro {
 
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
    private Long Id;
+
    private String isbn;
+
    private String titulo;
+       
+   @Column(unique = true)
    private String autor;
-   private Integer fachaEtaria;
+
+   private Integer faixaEtaria;
    private Integer numeroPagina;
+
+   private Integer StatusLivro;   
+   private Integer CategoriaLivro; 
+
+    @ManyToOne
+    @JoinColumn(name = "idBibliotecario")
+   private Bibliotecario bibliotecario;
 
   public Livro() {
   }
 
-public Livro(Long id, String isbn, String titulo, String autor, Integer fachaEtaria, Integer numeroPagina) {
+public Livro(Long id, String isbn, String titulo, String autor, Integer faixaEtaria, Integer numeroPagina,
+        Integer statusLivro, Integer categoriaLivro, Bibliotecario bibliotecario) {
     Id = id;
     this.isbn = isbn;
     this.titulo = titulo;
     this.autor = autor;
-    this.fachaEtaria = fachaEtaria;
+    this.faixaEtaria = faixaEtaria;
     this.numeroPagina = numeroPagina;
+    StatusLivro = statusLivro;
+    CategoriaLivro = categoriaLivro;
+    this.bibliotecario = bibliotecario;
 }
 
 public Long getId() {
@@ -55,12 +80,12 @@ public void setAutor(String autor) {
     this.autor = autor;
 }
 
-public Integer getFachaEtaria() {
-    return fachaEtaria;
+public Integer getFaixaEtaria() {
+    return faixaEtaria;
 }
 
-public void setFachaEtaria(Integer fachaEtaria) {
-    this.fachaEtaria = fachaEtaria;
+public void setFaixaEtaria(Integer faixaEtaria) {
+    this.faixaEtaria = faixaEtaria;
 }
 
 public Integer getNumeroPagina() {
@@ -69,6 +94,30 @@ public Integer getNumeroPagina() {
 
 public void setNumeroPagina(Integer numeroPagina) {
     this.numeroPagina = numeroPagina;
+}
+
+public Integer getStatusLivro() {
+    return StatusLivro;
+}
+
+public void setStatusLivro(Integer statusLivro) {
+    StatusLivro = statusLivro;
+}
+
+public Integer getCategoriaLivro() {
+    return CategoriaLivro;
+}
+
+public void setCategoriaLivro(Integer categoriaLivro) {
+    CategoriaLivro = categoriaLivro;
+}
+
+public Bibliotecario getBibliotecario() {
+    return bibliotecario;
+}
+
+public void setBibliotecario(Bibliotecario bibliotecario) {
+    this.bibliotecario = bibliotecario;
 }
 
 @Override
@@ -103,7 +152,5 @@ public void AtualizaStatus(StatusLivro statusLivro){
 public void Reserva(){
     return ;
    }
-
-   
 
 }
