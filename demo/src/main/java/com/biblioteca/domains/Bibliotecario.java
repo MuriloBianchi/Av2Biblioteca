@@ -1,5 +1,7 @@
 package com.biblioteca.domains;
 
+import com.biblioteca.domains.dtos.BibliotecarioDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +32,14 @@ public class Bibliotecario {
         this.email = email;
         this.telefone = telefone;
         this.cpf = cpf;
+    }
+
+    public Bibliotecario(BibliotecarioDTO obj) {
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.email = obj.getEmail();
+        this.telefone = obj.getEmail();
+        this.cpf = obj.getCpf();
     }
 
     public Long getId() {
