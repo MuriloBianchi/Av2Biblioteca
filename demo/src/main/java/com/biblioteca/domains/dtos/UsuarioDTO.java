@@ -2,20 +2,35 @@ package com.biblioteca.domains.dtos;
 
 import com.biblioteca.domains.Usuario;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class UsuarioDTO {
 
     protected long id;
 
+    @NotNull(message = "O campo Nome não pode ser nulo!")
+    @NotBlank(message = "O campo Nome não pode ser vazio!")
     protected String nome;
 
+    @NotNull(message = "O campo E-mail não pode ser nulo!")
+    @NotBlank(message = "O campo E-mail não pode ser vazio!")
     protected String email;
 
+    @NotNull(message = "O campo CPF não pode ser nulo!")
+    @NotBlank(message = "O campo CPF não pode ser vazio!")
     protected String cpf;
 
+    @NotNull(message = "O campo Idade não pode ser nulo!")
+    @NotBlank(message = "O campo Idade não pode ser vazio!")
     protected Integer idade;
 
+    @NotNull(message = "O campo Telefone não pode ser nulo!")
+    @NotBlank(message = "O campo Telefone não pode ser vazio!")
     protected String telefone;
 
+    @NotNull(message = "O campo Tipo Usuário não pode ser nulo!")
+    @NotBlank(message = "O campo Tipo Usuário não pode ser vazio!")
     protected Integer tipoUsuario;
 
     public UsuarioDTO() {};

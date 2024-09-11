@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import com.biblioteca.domains.Reserva;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 
 public class ReservaDTO {
 
@@ -15,18 +18,32 @@ public class ReservaDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaDevolucao;
 
+    @NotNull(message = "O campo Prazo não pode ser nulo!")
+    @NotBlank(message = "O campo Prazo não pode ser vazio!")
     protected String prazo;
 
+    @NotNull(message = "O campo Valor não pode ser nulo!")
+    @NotBlank(message = "O campo Valor não pode ser vazio!")
     protected double valor;
 
+    @NotNull(message = "O campo Status Reserva não pode ser nulo!")
+    @NotBlank(message = "O campo Status Reserva não pode ser vazio!")
     protected Integer statusReserva;
 
+    @NotNull(message = "O campo Usuário não pode ser nulo!")
+    @NotBlank(message = "O campo Usuário não pode ser vazio!")
     protected long usuario;
 
+    @NotNull(message = "O campo Livro não pode ser nulo!")
+    @NotBlank(message = "O campo Livro não pode ser vazio!")
     protected long livro;
 
+    @NotNull(message = "O campo Nome Usuário não pode ser nulo!")
+    @NotBlank(message = "O campo Nome Usuário não pode ser vazio!")
     protected String nomeUsuario;
 
+    @NotNull(message = "O campo Título Livro não pode ser nulo!")
+    @NotBlank(message = "O campo Título Livro não pode ser vazio!")
     protected String tituloLivro;
 
     public ReservaDTO() {};
