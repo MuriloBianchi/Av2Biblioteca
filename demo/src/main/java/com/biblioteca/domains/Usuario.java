@@ -1,5 +1,6 @@
 package com.biblioteca.domains;
 
+import com.biblioteca.domains.dtos.UsuarioDTO;
 import com.biblioteca.domains.enums.TipoUsuario;
 
 import jakarta.persistence.Column;
@@ -15,7 +16,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     private String nome;
 
@@ -34,7 +35,7 @@ public class Usuario {
         
     }
 
-    public Usuario(long id, String nome, String email, String cpf, Integer idade, String telefone, TipoUsuario tipoUsuario) {
+    public Usuario(Long id, String nome, String email, String cpf, Integer idade, String telefone, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -44,11 +45,20 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public long getId() {
+    public Usuario(UsuarioDTO obj){
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.email = obj.getEmail();
+        this.cpf = obj.getCpf();
+        this.idade = obj.getIdade();
+        this.telefone = obj.getTelefone();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
