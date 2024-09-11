@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class LivroDTO {
 
-    protected long id;
+    protected Long id;
 
     @NotNull(message = "O campo ISBN não pode ser nulo!")
     @NotBlank(message = "O campo ISBN não pode ser vazio!")
@@ -31,7 +31,7 @@ public class LivroDTO {
 
     @NotNull(message = "O campo Bibliotecario não pode ser nulo!")
     @NotBlank(message = "O campo Bibliotecario não pode ser vazio!")
-    private long bibliotecario;
+    private Long bibliotecario;
 
     private String nomeBibliotecario;
 
@@ -59,12 +59,12 @@ public class LivroDTO {
         this.nomeBibliotecario = livro.getBibliotecario().getNome();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -119,12 +119,12 @@ public class LivroDTO {
     }
 
 
-    public long getBibliotecario() {
+    public Long getBibliotecario() {
         return bibliotecario;
     }
 
 
-    public void setBibliotecario(long bibliotecario) {
+    public void setBibliotecario(Long bibliotecario) {
         this.bibliotecario = bibliotecario;
     }
 

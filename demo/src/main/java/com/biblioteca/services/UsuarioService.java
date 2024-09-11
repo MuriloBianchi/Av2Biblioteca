@@ -23,7 +23,7 @@ public class UsuarioService {
         return usersRepo.findAll().stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
     }
 
-    public Usuario findById(long id) {
+    public Usuario findById(Long id) {
         Optional<Usuario> obj = usersRepo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado no sistema! ID: " + id));
     }
@@ -45,7 +45,7 @@ public class UsuarioService {
         return usersRepo.save(newObj);
     }
 
-    public Usuario update(long id, UsuarioDTO objDto) {
+    public Usuario update(Long id, UsuarioDTO objDto) {
         objDto.setId(id);
         Usuario oldObj = findById(id);
         validaPorCPFeEmail(objDto);
@@ -53,7 +53,7 @@ public class UsuarioService {
         return usersRepo.save(oldObj);
     }
 
-        public void delete(long id) {
+        public void delete(Long id) {
         usersRepo.deleteById(id);
     }
 

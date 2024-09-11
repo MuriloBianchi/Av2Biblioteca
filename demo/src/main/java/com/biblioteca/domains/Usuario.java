@@ -52,6 +52,7 @@ public class Usuario {
         this.cpf = obj.getCpf();
         this.idade = obj.getIdade();
         this.telefone = obj.getTelefone();
+        this.tipoUsuario = TipoUsuario.toEnum(obj.getTipoUsuario());
     }
 
     public Long getId() {

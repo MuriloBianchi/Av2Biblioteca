@@ -1,5 +1,6 @@
 package com.biblioteca.domains;
 
+import com.biblioteca.domains.dtos.LivroDTO;
 import com.biblioteca.domains.enums.CategoriaLivro;
 import com.biblioteca.domains.enums.StatusLivro;
 
@@ -26,8 +27,8 @@ public class Livro {
    private Integer faixaEtaria;
    private Integer numeroPagina;
 
-   private StatusLivro StatusLivro;   
-   private CategoriaLivro CategoriaLivro; 
+   private StatusLivro statusLivro;   
+   private CategoriaLivro categoriaLivro; 
 
     @ManyToOne
     @JoinColumn(name = "idBibliotecario")
@@ -44,9 +45,20 @@ public Livro(Long id, String isbn, String titulo, String autor, Integer faixaEta
     this.autor = autor;
     this.faixaEtaria = faixaEtaria;
     this.numeroPagina = numeroPagina;
-    this.StatusLivro = statusLivro;
-    this.CategoriaLivro = categoriaLivro;
+    this.statusLivro = statusLivro;
+    this.categoriaLivro = categoriaLivro;
     this.bibliotecario = bibliotecario;
+}
+
+public Livro(LivroDTO obj){
+    this.Id = obj.getId();
+    this.isbn = obj.getIsbn();
+    this.titulo = obj.getTitulo();
+    this.autor = obj.getAutor();
+    this.faixaEtaria = obj.getFaixaEtaria();
+    this.numeroPagina = obj.getNumeroPagina();
+    this.statusLivro = StatusLivro.toEnum(obj.getStatusLivro());
+    this.categoriaLivro = CategoriaLivro.toEnum(obj.getCategoriaLivro());
 }
 
 public Long getId() {
@@ -98,19 +110,19 @@ public void setNumeroPagina(Integer numeroPagina) {
 }
 
 public StatusLivro getStatusLivro() {
-    return StatusLivro;
+    return statusLivro;
 }
 
 public void setStatusLivro(StatusLivro statusLivro) {
-    this.StatusLivro = statusLivro;
+    this.statusLivro = statusLivro;
 }
 
 public CategoriaLivro getCategoriaLivro() {
-    return CategoriaLivro;
+    return categoriaLivro;
 }
 
 public void setCategoriaLivro(CategoriaLivro categoriaLivro) {
-    this.CategoriaLivro = categoriaLivro;
+    this.categoriaLivro = categoriaLivro;
 }
 
 public Bibliotecario getBibliotecario() {
