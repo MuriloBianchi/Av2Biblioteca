@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class BibliotecarioDTO {
 
-    protected long id;
+    protected Long id;
 
     @NotNull(message = "O campo Nome não pode ser nulo!")
     @NotBlank(message = "O campo NOme não pode ser vazio!")
@@ -41,7 +41,7 @@ public class BibliotecarioDTO {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
