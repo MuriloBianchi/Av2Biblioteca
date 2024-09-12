@@ -1,5 +1,6 @@
 package com.biblioteca.domains;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,8 +9,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
+import com.biblioteca.domains.dtos.ReservaDTO;
 import com.biblioteca.domains.enums.StatusReserva;
+import com.biblioteca.repositories.ReservaRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
