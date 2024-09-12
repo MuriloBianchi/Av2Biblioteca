@@ -3,7 +3,6 @@ package com.biblioteca.domains;
 import com.biblioteca.domains.dtos.LivroDTO;
 import com.biblioteca.domains.enums.CategoriaLivro;
 import com.biblioteca.domains.enums.StatusLivro;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

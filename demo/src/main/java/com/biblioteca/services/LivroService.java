@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.biblioteca.domains.Bibliotecario;
 import com.biblioteca.domains.Livro;
 import com.biblioteca.domains.dtos.LivroDTO;
 import com.biblioteca.repositories.LivroRepository;
@@ -17,6 +18,9 @@ public class LivroService {
 
     @Autowired
     private LivroRepository livroRepo;
+
+    @Autowired
+    private BibliotecarioService bibliService;
 
     public List<LivroDTO> findAll(){
         return livroRepo.findAll().stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
@@ -41,8 +45,12 @@ public class LivroService {
     }
 
     public Livro create(LivroDTO objDto) {
+        Bibliotecario bibli = bibliService.findById(objDto.getId());
+
         objDto.setId(null);
         Livro newObj = new Livro(objDto);
+
+        newObj.setBibliotecario(bibli);
         return livroRepo.save(newObj);
     }
 
