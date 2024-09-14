@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class ReservaDTO {
 
-    protected long id;
+    protected Long id;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaReserva;
@@ -61,11 +61,11 @@ public class ReservaDTO {
         this.tituloLivro = reserva.getLivro().getTitulo();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

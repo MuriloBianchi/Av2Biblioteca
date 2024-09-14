@@ -19,7 +19,7 @@ import com.biblioteca.services.exceptions.ObjectNotFoundException;
 public class ReservaService {
 
  @Autowired
- private ReservaRepository ReservaRepo;
+ private ReservaRepository reservaRepo;
 
  @Autowired
  private LivroService livroService;
@@ -27,43 +27,40 @@ public class ReservaService {
  @Autowired
  private UsuarioService usuarioService;
 
+public Reserva findbyId(Long id){
+    Optional<Reserva> obj = reservaRepo.findById(id);
+    return obj.orElseThrow(() -> new ObjectNotFoundException("Reserva Não Encontrado! Id:"+id));
+}
 
-/* public ReservaService findbyId(Long id){
-    Optional<ReservaService> obj = ReservaRepo.findbyId(id);
-    return obj.orElseThrow(() -> new ObjectNotFoundException("Reserva Não Encontrada! Id:"+id));
- } */
+public List<ReservaDTO> findAll(){
+    return reservaRepo.findAll().stream().map(obj -> new ReservaDTO(obj)).collect(Collectors.toList());
+}
 
- public List<ReservaDTO> findAll(){
-    return ReservaRepo.findAll().stream().map(obj -> new ReservaDTO(obj)).collect(Collectors.toList());
- }
+private Reserva newsReserva(ReservaDTO obj){
+Livro livr = livroService.findById(obj.getLivro());
+Usuario usur = usuarioService.findById(obj.getLivro());
 
 
- private Reserva newsReserva(ReservaDTO obj){
-    Usuario usu = usuarioService.findById(obj.getUsuario());
-    Livro liv = livroService.findById(obj.getLivro());
+Reserva re = new Reserva();
+if (obj.getId() != null){
+    re.setId(obj.getId());
+}
 
-    Reserva re = new Reserva();
-    
-    /*if(obj.getId() != null){
-        re.setId(obj.getId());
-    } */
+re.setLivro(livr);
+re.setUsuario(usur);
+return re;
 
-    re.setUsuario(usu);
-    re.setLivro(liv);
+}
 
-    return re;
+public Reserva create(ReservaDTO objDto){
+    return reservaRepo.save(newsReserva(objDto));
+}
 
- }
-
-  public Reserva create(ReservaDTO objDto){
-    return ReservaRepo.save(newsReserva(objDto));
-  }
-
-  /*public Reserva update(Long id, ReservaDTO objDto){
+public Reserva update(Long id, ReservaDTO objDto){
     objDto.setId(id);
-    Reserva oldObj = findById(id);
+    Reserva oldObj = findbyId(id);
     oldObj = newsReserva(objDto);
-    return ReservaRepo.save(oldObj);
-  }*/
+    return reservaRepo.save(oldObj);
+}
 
 }
