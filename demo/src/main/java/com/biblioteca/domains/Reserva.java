@@ -9,11 +9,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 import com.biblioteca.domains.dtos.ReservaDTO;
 import com.biblioteca.domains.enums.StatusReserva;
-import com.biblioteca.repositories.ReservaRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -22,7 +20,7 @@ public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dtaReserva;
@@ -48,8 +46,7 @@ public class Reserva {
 
     }
 
-    public Reserva(long id, LocalDate dtaReserva, LocalDate dtaDevolucao, String prazo, double valor, Usuario usuario,
-            Livro livro, StatusReserva statusReserva) {
+    public Reserva(Long id, LocalDate dtaReserva, LocalDate dtaDevolucao, String prazo, double valor, Usuario usuario, Livro livro, StatusReserva statusReserva) {
         this.id = id;
         this.dtaReserva = dtaReserva;
         this.dtaDevolucao = dtaDevolucao;
@@ -60,11 +57,20 @@ public class Reserva {
         this.statusReserva = statusReserva;
     }
 
-    public long getId() {
+    public Reserva(ReservaDTO obj){
+        this.id = obj.getId();
+        this.dtaReserva = LocalDate.now();
+        this.dtaDevolucao = obj.getDtaDevolucao();
+        this.prazo = obj.getPrazo();
+        this.valor = obj.getValor();
+        this.statusReserva = StatusReserva.toEnum(obj.getStatusReserva());
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

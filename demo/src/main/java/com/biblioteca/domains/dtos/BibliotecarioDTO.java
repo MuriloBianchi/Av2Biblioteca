@@ -37,7 +37,7 @@ public class BibliotecarioDTO {
         this.telefone = bibliotecario.getTelefone();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

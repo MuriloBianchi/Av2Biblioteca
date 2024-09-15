@@ -22,7 +22,6 @@ public class UsuarioDTO {
     protected String cpf;
 
     @NotNull(message = "O campo Idade não pode ser nulo!")
-    @NotBlank(message = "O campo Idade não pode ser vazio!")
     protected Integer idade;
 
     @NotNull(message = "O campo Telefone não pode ser nulo!")
@@ -30,7 +29,6 @@ public class UsuarioDTO {
     protected String telefone;
 
     @NotNull(message = "O campo Tipo Usuário não pode ser nulo!")
-    @NotBlank(message = "O campo Tipo Usuário não pode ser vazio!")
     protected Integer tipoUsuario;
 
     public UsuarioDTO() {};

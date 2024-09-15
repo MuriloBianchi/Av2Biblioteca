@@ -45,7 +45,7 @@ public class LivroService {
     }
 
     public Livro create(LivroDTO objDto) {
-        Bibliotecario bibli = bibliService.findById(objDto.getId());
+        Bibliotecario bibli = bibliService.findById(objDto.getBibliotecario());
 
         objDto.setId(null);
         Livro newObj = new Livro(objDto);
@@ -57,7 +57,11 @@ public class LivroService {
     public Livro update(Long id, LivroDTO objDto) {
         objDto.setId(id);
         Livro oldObj = findById(id);
+
+        Bibliotecario bibli = bibliService.findById(objDto.getBibliotecario());
+
         oldObj = new Livro(objDto);
+        oldObj.setBibliotecario(bibli);
         return livroRepo.save(oldObj);
     }
 

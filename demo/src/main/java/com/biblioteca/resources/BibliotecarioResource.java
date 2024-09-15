@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.biblioteca.domains.Bibliotecario;
 import com.biblioteca.domains.dtos.BibliotecarioDTO;
+import com.biblioteca.domains.dtos.LivroDTO;
 import com.biblioteca.services.BibliotecarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +40,7 @@ public class BibliotecarioResource {
     }
 
     @Operation(summary = "Lista todos os bibliotecario", description = "Retorna uma lista com todos os biblioteacarios.")
+    @GetMapping
     public ResponseEntity<List<BibliotecarioDTO>> findAll(){
         return ResponseEntity.ok().body(bibliotecarioService.findAll());
     }
@@ -55,6 +58,13 @@ public class BibliotecarioResource {
     public ResponseEntity<BibliotecarioDTO> update(@PathVariable Long id, @Valid @RequestBody BibliotecarioDTO obDto){
         Bibliotecario obj = bibliotecarioService.update(id, obDto);
         return ResponseEntity.ok().body(new BibliotecarioDTO(obj));
+    }
+
+    @Operation(summary = "Deleta um  bibliotecario", description = "Deleta um bibliotecario com base no ID fornecido.")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<LivroDTO> delete(@PathVariable Long id) {
+        bibliotecarioService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

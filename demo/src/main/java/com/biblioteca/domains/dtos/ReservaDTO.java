@@ -15,6 +15,7 @@ public class ReservaDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaReserva;
 
+    @NotNull(message = "O campo Data de Devolução não pode ser nulo!")
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dtaDevolucao;
 
@@ -23,27 +24,19 @@ public class ReservaDTO {
     protected String prazo;
 
     @NotNull(message = "O campo Valor não pode ser nulo!")
-    @NotBlank(message = "O campo Valor não pode ser vazio!")
     protected double valor;
 
     @NotNull(message = "O campo Status Reserva não pode ser nulo!")
-    @NotBlank(message = "O campo Status Reserva não pode ser vazio!")
     protected Integer statusReserva;
 
     @NotNull(message = "O campo Usuário não pode ser nulo!")
-    @NotBlank(message = "O campo Usuário não pode ser vazio!")
-    protected long usuario;
+    protected Long usuario;
 
     @NotNull(message = "O campo Livro não pode ser nulo!")
-    @NotBlank(message = "O campo Livro não pode ser vazio!")
-    protected long livro;
+    protected Long livro;
 
-    @NotNull(message = "O campo Nome Usuário não pode ser nulo!")
-    @NotBlank(message = "O campo Nome Usuário não pode ser vazio!")
     protected String nomeUsuario;
 
-    @NotNull(message = "O campo Título Livro não pode ser nulo!")
-    @NotBlank(message = "O campo Título Livro não pode ser vazio!")
     protected String tituloLivro;
 
     public ReservaDTO() {};
@@ -109,19 +102,19 @@ public class ReservaDTO {
         this.statusReserva = statusReserva;
     }
 
-    public long getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(long usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 
-    public long getLivro() {
+    public Long getLivro() {
         return livro;
     }
 
-    public void setLivro(long livro) {
+    public void setLivro(Long livro) {
         this.livro = livro;
     }
 

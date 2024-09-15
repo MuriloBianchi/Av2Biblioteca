@@ -4,12 +4,16 @@ import com.biblioteca.domains.dtos.LivroDTO;
 import com.biblioteca.domains.enums.CategoriaLivro;
 import com.biblioteca.domains.enums.StatusLivro;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "livro")
 public class Livro {
 
    @Id
@@ -29,8 +33,8 @@ public class Livro {
    private StatusLivro statusLivro;   
    private CategoriaLivro categoriaLivro; 
 
-    @ManyToOne
-    @JoinColumn(name = "idBibliotecario")
+   @ManyToOne
+   @JoinColumn(name = "idBibliotecario")
    private Bibliotecario bibliotecario;
 
   public Livro() {

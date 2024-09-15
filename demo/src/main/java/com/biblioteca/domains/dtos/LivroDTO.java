@@ -22,25 +22,20 @@ public class LivroDTO {
     protected String autor;
 
     @NotNull(message = "O campo Facha Etário não pode ser nulo!")
-    @NotBlank(message = "O campo Facha Etária não pode ser vazio!")
     protected Integer faixaEtaria;
 
     @NotNull(message = "O campo Número de Páginas não pode ser nulo!")
-    @NotBlank(message = "O campo Número de Páginas não pode ser vazio!")
     protected Integer numeroPagina;
 
     @NotNull(message = "O campo Bibliotecario não pode ser nulo!")
-    @NotBlank(message = "O campo Bibliotecario não pode ser vazio!")
     private Long bibliotecario;
 
     private String nomeBibliotecario;
 
     @NotNull(message = "O campo Status Livro não pode ser nulo!")
-    @NotBlank(message = "O campo Status Livro não pode ser vazio!")
     private Integer statusLivro;
 
     @NotNull(message = "O campo Categoria não pode ser nulo!")
-    @NotBlank(message = "O campo Categoria não pode ser vazio!")
     private Integer categoriaLivro;
 
     public LivroDTO() {};
