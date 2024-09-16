@@ -9,7 +9,7 @@ import com.biblioteca.services.DBService;
 import jakarta.annotation.PostConstruct;
 
 @Configuration
-@Profile("teste")
+@Profile("test")
 public class TestConfig {
 
      @Autowired
