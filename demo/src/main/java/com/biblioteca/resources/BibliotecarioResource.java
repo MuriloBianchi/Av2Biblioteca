@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.biblioteca.domains.Bibliotecario;
 import com.biblioteca.domains.dtos.BibliotecarioDTO;
-import com.biblioteca.domains.dtos.LivroDTO;
+import com.biblioteca.repositories.LivroRepository;
 import com.biblioteca.services.BibliotecarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +31,9 @@ public class BibliotecarioResource {
     
     @Autowired
     private BibliotecarioService bibliotecarioService;
+
+    @Autowired
+    private LivroRepository livroRepo;
 
     @Operation(summary = "Buscar bibliotecario por ID", description = "Retorna um biblioteacario com base no ID fornecido.")
     @GetMapping(value = "/{id}")
@@ -62,7 +65,13 @@ public class BibliotecarioResource {
 
     @Operation(summary = "Deleta um  bibliotecario", description = "Deleta um bibliotecario com base no ID fornecido.")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<LivroDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        Bibliotecario bibli = bibliotecarioService.findById(id);
+
+        if (livroRepo.findByBibliotecario(bibli).isPresent()) {
+            return ResponseEntity.ok().body("Bibliotecario possui livros");
+        }
+        
         bibliotecarioService.delete(id);
         return ResponseEntity.noContent().build();
     }

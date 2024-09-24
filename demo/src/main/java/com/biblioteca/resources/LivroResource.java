@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.biblioteca.domains.Livro;
 import com.biblioteca.domains.dtos.LivroDTO;
+import com.biblioteca.repositories.ReservaRepository;
 import com.biblioteca.services.LivroService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,6 +31,9 @@ public class LivroResource {
 
     @Autowired
     private LivroService livroService;
+
+    @Autowired
+    private ReservaRepository reserRepo;
 
     @Operation(summary = "Lista todos os Livros", description = "Retorna uma lista com todos os livros.")
     @GetMapping
@@ -80,7 +84,13 @@ public class LivroResource {
 
     @Operation(summary = "Deleta um  livro", description = "Deleta um livro com base no ID fornecido.")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<LivroDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+       Livro obj = livroService.findById(id);
+
+       if(reserRepo.findByLivro(obj).isPresent()){
+        return ResponseEntity.ok().body("Livro possui reserva");
+        };
+
         livroService.delete(id);
         return ResponseEntity.noContent().build();
     }

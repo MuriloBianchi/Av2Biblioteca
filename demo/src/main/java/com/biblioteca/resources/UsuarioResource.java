@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.biblioteca.domains.Usuario;
 import com.biblioteca.domains.dtos.UsuarioDTO;
+import com.biblioteca.repositories.ReservaRepository;
 import com.biblioteca.services.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,6 +31,9 @@ public class UsuarioResource {
 
     @Autowired
     private UsuarioService usersService;
+
+    @Autowired
+    private ReservaRepository reservaRepo;
 
     @Operation(summary = "Lista todos os Usuarios", description = "Retorna uma lista com todos os Usuarios.")
     @GetMapping
@@ -75,7 +79,13 @@ public class UsuarioResource {
 
     @Operation(summary = "Deleta um Usuario", description = "Deleta um usuario com base no ID fornecido.")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<UsuarioDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        Usuario user = usersService.findById(id);
+
+        if (reservaRepo.findByUsuario(user).isPresent()) {
+            return ResponseEntity.ok().body("Usuario possui reserva");
+        }
+
         usersService.delete(id);
         return ResponseEntity.noContent().build();
     }
