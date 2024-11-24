@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class ReservaResource {
     private ReservaService reservaService;
 
     @Operation(summary = "Buscar Reserva por ID", description = "Retorna um Reserva com base no ID fornecido.")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> findById(@PathVariable Long id){
         Reserva obj = this.reservaService.findbyId(id);
@@ -39,12 +41,14 @@ public class ReservaResource {
     }
 
     @Operation(summary = "Lista todos os Reserva", description = "Retorna uma lista com todos os biblioteacarios.")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @GetMapping
     public ResponseEntity<List<ReservaDTO>> findAll(){
         return ResponseEntity.ok().body(reservaService.findAll());
     }
 
     @Operation(summary = "Cria um novo Reserva", description = "Cria um novo Reserva com base nos dados fornecidos.")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PostMapping
     public ResponseEntity<ReservaDTO> create(@Valid @RequestBody ReservaDTO objDto){
         Reserva newObj = reservaService.create(objDto);
@@ -53,6 +57,7 @@ public class ReservaResource {
     }
 
     @Operation(summary = "Atualiza um  Reserva", description = "Atualiza um Reserva com base no ID fornecido.")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> update(@PathVariable Long id, @Valid @RequestBody ReservaDTO obDto){
         Reserva obj = reservaService.update(id, obDto);
@@ -60,6 +65,7 @@ public class ReservaResource {
     }
 
     @Operation(summary = "Deleta um  Reserva", description = "Deleta um Reserva com base no ID fornecido.")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> delete(@PathVariable Long id) {
         reservaService.delete(id);
