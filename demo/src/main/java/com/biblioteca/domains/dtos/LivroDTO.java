@@ -51,7 +51,7 @@ public class LivroDTO {
         this.statusLivro = livro.getStatusLivro().getId();
         this.categoriaLivro = livro.getCategoriaLivro().getId();   
         this.bibliotecario = livro.getBibliotecario().getId();
-        this.nomeBibliotecario = livro.getBibliotecario().getNome();
+        this.nomeBibliotecario = livro.getBibliotecario().getFirstName();
     }
 
     public Long getId() {

@@ -2,7 +2,7 @@ package com.biblioteca.domains.enums;
 
 public enum TipoUsuario {
 
-ALUNO(0,"ALUNO"), PROFESSOR(1,"PROFESSOR"), FUNCIONARIO(2,"FUNCIONARIO");
+ALUNO(0,"ALUNO"), BIBLIOTECARIO(2,"BIBLIOTECARIO");
 
 private Integer id;
 private String tipoUsuario;

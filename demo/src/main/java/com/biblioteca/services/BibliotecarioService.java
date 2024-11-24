@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.biblioteca.domains.Bibliotecario;
@@ -18,6 +19,9 @@ public class BibliotecarioService {
     
     @Autowired
     private BibliotecarioRepository bibliotecarioRepo;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     public List<BibliotecarioDTO> findAll(){
         return bibliotecarioRepo.findAll().stream().map(obj -> new BibliotecarioDTO(obj)).collect(Collectors.toList());
@@ -40,6 +44,7 @@ public class BibliotecarioService {
 
         public Bibliotecario create(BibliotecarioDTO objDto) {
         objDto.setId(null);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         Bibliotecario newObj = new Bibliotecario(objDto);
         return bibliotecarioRepo.save(newObj);
@@ -48,6 +53,7 @@ public class BibliotecarioService {
     public Bibliotecario update(long id, BibliotecarioDTO objDto) {
         objDto.setId(id);
         Bibliotecario oldObj = findById(id);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         oldObj = new Bibliotecario(objDto);
         return bibliotecarioRepo.save(oldObj);

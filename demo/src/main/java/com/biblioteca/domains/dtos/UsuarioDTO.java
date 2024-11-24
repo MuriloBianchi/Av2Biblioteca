@@ -28,19 +28,23 @@ public class UsuarioDTO {
     @NotBlank(message = "O campo Telefone não pode ser vazio!")
     protected String telefone;
 
-    @NotNull(message = "O campo Tipo Usuário não pode ser nulo!")
     protected Integer tipoUsuario;
+
+    @NotNull(message = "O campo senha não pode ser nulo")
+    @NotBlank(message = "O campo senha não pode ser vazio")
+    protected String password;
 
     public UsuarioDTO() {};
 
     public UsuarioDTO(Usuario usuario){
         this.id = usuario.getId();
-        this.nome = usuario.getNome();
+        this.nome = usuario.getFirstName();
         this.email = usuario.getEmail();
+        this.password = usuario.getPassword();
         this.cpf = usuario.getCpf();
         this.idade = usuario.getIdade();
         this.telefone = usuario.getTelefone();
-        this.tipoUsuario = usuario.getTipoUsuario().getId();
+        this.tipoUsuario = usuario.getTipoUsuario();
     }
 
     public Long getId() {
@@ -97,6 +101,14 @@ public class UsuarioDTO {
 
     public void setTipoUsuario(Integer tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     

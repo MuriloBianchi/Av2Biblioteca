@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.biblioteca.domains.Usuario;
@@ -18,6 +19,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usersRepo;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
         public List<UsuarioDTO> findAll() {
         return usersRepo.findAll().stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
@@ -40,6 +44,7 @@ public class UsuarioService {
 
     public Usuario create(UsuarioDTO objDto) {
         objDto.setId(null);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         Usuario newObj = new Usuario(objDto);
         return usersRepo.save(newObj);
@@ -48,6 +53,7 @@ public class UsuarioService {
     public Usuario update(Long id, UsuarioDTO objDto) {
         objDto.setId(id);
         Usuario oldObj = findById(id);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         oldObj = new Usuario(objDto);
         return usersRepo.save(oldObj);

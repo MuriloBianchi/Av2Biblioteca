@@ -50,7 +50,7 @@ public class ReservaDTO {
         this.statusReserva = reserva.getStatusReserva().getId();
         this.usuario = reserva.getUsuario().getId();
         this.livro = reserva.getLivro().getId();
-        this.nomeUsuario = reserva.getUsuario().getNome();
+        this.nomeUsuario = reserva.getUsuario().getFirstName();
         this.tituloLivro = reserva.getLivro().getTitulo();
     }
 
