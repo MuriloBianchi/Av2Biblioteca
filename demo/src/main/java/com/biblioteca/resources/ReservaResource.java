@@ -33,7 +33,7 @@ public class ReservaResource {
     private ReservaService reservaService;
 
     @Operation(summary = "Buscar Reserva por ID", description = "Retorna um Reserva com base no ID fornecido.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> findById(@PathVariable Long id){
         Reserva obj = this.reservaService.findbyId(id);
@@ -41,14 +41,14 @@ public class ReservaResource {
     }
 
     @Operation(summary = "Lista todos os Reserva", description = "Retorna uma lista com todos os biblioteacarios.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping
     public ResponseEntity<List<ReservaDTO>> findAll(){
         return ResponseEntity.ok().body(reservaService.findAll());
     }
 
     @Operation(summary = "Cria um novo Reserva", description = "Cria um novo Reserva com base nos dados fornecidos.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO') or hasRole('ALUNO')")
     @PostMapping
     public ResponseEntity<ReservaDTO> create(@Valid @RequestBody ReservaDTO objDto){
         Reserva newObj = reservaService.create(objDto);
@@ -57,7 +57,7 @@ public class ReservaResource {
     }
 
     @Operation(summary = "Atualiza um  Reserva", description = "Atualiza um Reserva com base no ID fornecido.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO') or hasRole('ALUNO')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> update(@PathVariable Long id, @Valid @RequestBody ReservaDTO obDto){
         Reserva obj = reservaService.update(id, obDto);

@@ -37,14 +37,14 @@ public class LivroResource {
     private ReservaRepository reserRepo;
 
     @Operation(summary = "Lista todos os Livros", description = "Retorna uma lista com todos os livros.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO' or 'ALUNO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping
     public ResponseEntity<List<LivroDTO>> findAll(){
         return ResponseEntity.ok().body(livroService.findAll());
     }
 
     @Operation(summary = "Buscar livro por ID", description = "Retorna um livro com base no ID fornecido.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO' or 'ALUNO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<LivroDTO> findById(@PathVariable Long id){
         Livro obj = this.livroService.findById(id);
@@ -52,7 +52,7 @@ public class LivroResource {
     }
 
     @Operation(summary = "Buscar bibliotecario por Titulo", description = "Retorna um livro com base no titulo fornecido.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO' or 'ALUNO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping(value = "/titulo/{titulo}")
     public ResponseEntity<LivroDTO> findByTitulo(@PathVariable String titulo){
         Livro obj = this.livroService.findByTitulo(titulo);
@@ -60,14 +60,14 @@ public class LivroResource {
     }
 
     @Operation(summary = "Lista livros por Autor", description = "Retorna uma lista com todos os livros de um autor.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO' or 'ALUNO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping(value = "/autor/{autor}")
     public ResponseEntity<List<LivroDTO>> findByAutor(@PathVariable String autor){
         return ResponseEntity.ok().body(livroService.findByAutor(autor));
     }
 
     @Operation(summary = "Lista livros por Faixa Etaria", description = "Retorna uma lista de livros com base na faixa etaria informada.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO' or 'ALUNO')")
+    @PreAuthorize("hasRole('BIBLIOTECARIO')or hasRole('ALUNO')")
     @GetMapping(value = "/faixaEtaria/{faixaEtaria}")
     public ResponseEntity<List<LivroDTO>> findByAutor(@PathVariable Integer faixaEtaria){
         return ResponseEntity.ok().body(livroService.findByFaixaEtaria(faixaEtaria));

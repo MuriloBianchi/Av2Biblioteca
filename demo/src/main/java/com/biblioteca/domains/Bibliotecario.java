@@ -20,7 +20,7 @@ public class Bibliotecario extends Person{
     
     public Bibliotecario(Long id, String firstName, String cpf, String email, String password, int idade, String telefone) {
         super(id, firstName, cpf, email, password, idade, telefone);
-        addPersonType(TipoUsuario.ALUNO);
+        addPersonType(TipoUsuario.BIBLIOTECARIO);
     }
 
     public Bibliotecario(BibliotecarioDTO obj){
@@ -36,7 +36,7 @@ public class Bibliotecario extends Person{
 
     public Bibliotecario(){
         super();
-        addPersonType(TipoUsuario.ALUNO);
+        addPersonType(TipoUsuario.BIBLIOTECARIO);
     }
 
     public List<Livro> getReservas() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class BibliotecarioResource {
     }
 
     @Operation(summary = "Lista todos os bibliotecario", description = "Retorna uma lista com todos os biblioteacarios.")
-    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PostAuthorize("hasRole('BIBLIOTECARIO')")
     @GetMapping
     public ResponseEntity<List<BibliotecarioDTO>> findAll(){
         return ResponseEntity.ok().body(bibliotecarioService.findAll());
